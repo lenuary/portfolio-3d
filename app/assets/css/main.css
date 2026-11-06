@@ -1,0 +1,82 @@
+:root {
+  --color-page: #0a0a0c;
+  --color-text: #fbf5ff;
+  --color-accent: #d94cf4;
+  --color-accent-text: #ed8df9;
+  --color-focus: #f5b8ff;
+  --color-text-muted: #dfc5e7;
+  --color-home-scrim: #0d0614b8;
+  --color-panel-start: #1f0b2a;
+  --color-panel-middle: #17091f;
+  --color-panel-end: #2b0b35;
+  --color-panel-glow-top: #a632ba3b;
+  --color-panel-glow-bottom: #b03bcd26;
+  --color-action-start: #9631c6;
+  --color-action-end: #791aa8;
+  --color-action-hover-start: #a437d0;
+  --color-action-hover-end: #8522b4;
+  --color-field-border: #7daa94;
+}
+
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: var(--color-page);
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+/* Programmatically focused headings identify the new section without a mouse outline. */
+h1[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  padding: 12px 18px;
+  transform: translateY(-150%);
+  border-radius: 6px;
+  background: #fff;
+  color: #201027;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (forced-colors: active) {
+  :where(a, button, input, textarea, [tabindex]):focus-visible {
+    outline-color: Highlight !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

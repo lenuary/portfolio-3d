@@ -1,0 +1,46 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+previews/
+.tools/
+
+# Local hosting state
+.vercel/
+.netlify/
+
+# Generated test reports
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+Thumbs.db
+Desktop.ini
+.fleet
+.idea
+
+# Local documentation and asset sources
+/docs/
+/assets-source/
+
+# Local audit and asset preparation tools
+/scripts/audit-sections.mjs
+/scripts/optimize-images.py
+/scripts/optimize-project-animation.py
+
+# Local env files
+.env
+.env.*
+!.env.example

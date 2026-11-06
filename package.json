@@ -1,0 +1,43 @@
+{
+  "name": "portfolio-3d",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --test tests/*.test.mjs",
+    "test:contrast": "node scripts/check-contrast.mjs",
+    "test:preview": "node scripts/check-preview.mjs"
+  },
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "gsap": "^3.15.0",
+    "nuxt": "^4.6.4",
+    "three": "^0.186.1",
+    "vue": "^3.5.45",
+    "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.186.0",
+    "prettier": "^3.9.10",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.14"
+  },
+  "engines": {
+    "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
+  },
+  "overrides": {
+    "@vercel/nft": {
+      "glob": "14.0.4"
+    },
+    "readdir-glob": {
+      "minimatch": "11.0.5"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+name: Portfolio quality
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Audit moderate and higher dependency findings
+        run: npm audit --audit-level=moderate
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Check TypeScript
+        run: npm run typecheck
+
+      - name: Run regression tests
+        run: npm test
+
+      - name: Check design contrast pairs
+        run: npm run test:contrast
+
+      - name: Build production application
+        run: npm run build
+
+      - name: Check production HTTP responses
+        run: |
+          NITRO_HOST=127.0.0.1 NITRO_PORT=3001 node .output/server/index.mjs &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          npm run test:preview
